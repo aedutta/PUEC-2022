@@ -1,0 +1,152 @@
+\section{Partition Function}
+\subsection{Exercise}
+We can think of $W$ as such: we have $N$ particles and we must place $n_i$ particles in the $i$th box in any order. Here, $W$ will represent the different number of ways one can do that. Hence, $W$ is given as 
+\begin{equation}
+    W = \frac{N!}{n_1!n_2!\dots n_i!}
+\end{equation}
+Therefore, 
+\begin{align}
+    \ln W &= \ln \frac{N!}{n_1!n_2!\dots n_i!} \\
+    &= \ln N! - \left(\sum_{i=1\leq N} \ln n_i!\right)
+\end{align}
+Stirling's formula allows us to approximate factorials as 
+\begin{equation}
+    \ln n! \approx n\ln n - n
+\end{equation}
+This means 
+\begin{align}
+    \ln W &= N\ln N - N - \sum \left(n_i\ln n_i - n_i\right)
+\end{align}
+Since $\sum n_i = N$, this means that $N$ and $N$ cancel out and we are left with 
+\begin{equation}
+    \ln W = N \ln N - \sum (n_i \ln n_i).
+\end{equation}
+\subsection{Exercise}
+We seek to maximize a function $f(n_1, n_2, \dots, n_i)$ with the constraints of \begin{align}
+    \sum n_i &= N \\
+    \sum N_i E_i &= E \\
+    \pdv{f}{n_i} &= 0
+\end{align} 
+To do this, we use lagrange multipliers, where we add these constraints to our equation. Hence, 
+\begin{align}
+    f(n_1, \dots, n_i, \alpha, \beta) &= \ln W + \alpha \sum_i n_i -\beta \sum_i n_i E_i \\
+    &= \sum_i n_i  - \sum_i n_i \ln n_i  + \alpha \sum_i n_i - \beta \sum_i n_i E_i
+\end{align}
+Using our third constraint, we find that 
+\begin{equation}
+    \pdv{f}{n_i} = -\ln n_i + \alpha - \beta E_i = 0.
+\end{equation}
+Therefore, we can find that 
+\begin{equation}
+    n_i = \exp (\alpha - \beta E_i)
+\end{equation}
+This equation can be summed over $i$ to show that 
+\begin{equation}
+    N = e^{\alpha}\sum_i e^{-\beta E_i}\implies \alpha = \ln \left(\frac{N}{\sum_i e^{-\beta E_i}}\right).
+\end{equation}
+Hence, this implies that 
+\begin{equation}
+    n_i = \frac{N \exp (-\beta E_i)}{\sum_j \exp (-\beta E_j)}
+\end{equation}
+\subsection{Exercise}
+The average energy can be written as 
+\begin{equation}
+    \bar E = \frac{\sum_i E_i e^{-\beta E_i}}{\sum_i e^{-\beta E_i}}
+\end{equation}
+The denominator is just the partition function whilst the numerator is 
+\begin{equation}
+    -\dv{Z}{\beta} = \sum_i E_i e^{-\beta E_i}.
+\end{equation}
+The average energy is then just 
+\begin{equation}\label{e}
+    \bar E = - \frac{1}{Z} \pdv{Z}{\beta} = - \pdv{\ln Z}{\beta}.
+\end{equation}
+\subsection{Exercise}
+The variance is the mean squared deviation. Or in other words, 
+\begin{equation}
+    (\overline{\Delta E}^2) = \overline{E^2} - \overline{E}^2
+\end{equation}
+We can calculate each part. For the first one, note that 
+\begin{equation}\overline{E^2} = \frac{\sum_i E_i^2 \exp(-\beta E_i)}{\sum_i \exp(-\beta E_i)}.
+\end{equation}
+From the given equation in the assignment, this implies that 
+\begin{equation}
+    \overline{E^2} = \frac{1}{Z}\pdv[2]{Z}{\beta}
+\end{equation}
+We also know that 
+\begin{equation}
+    \overline{E}^2 = \frac{1}{Z^2}\left(\pdv{Z}{\beta}\right)^2
+\end{equation}
+Combining together gives 
+\begin{align}
+    (\overline{\Delta E}^2) &= \frac{1}{Z}\pdv[2]{Z}{\beta} - \frac{1}{Z^2}\left(\pdv{Z}{\beta}\right)^2 \\
+    &= \pdv{}{\beta}\left(\frac{1}{Z}\pdv{Z}{\beta}\right) + \frac{1}{Z^2}\left(\pdv{Z}{\beta}\right)^2 - \frac{1}{Z^2}\left(\pdv{Z}{\beta}\right)^2 \\
+    &= \pdv[2]{\ln Z}{\beta}
+\end{align}
+\subsection{Exercise}
+The change in energy by a quasi-static change in parameter of $x\to x+ \dd x$ is 
+\begin{equation}
+\delta E = \pdv{E}{x}\delta x.
+\end{equation}
+Hence, the macroscopic change in work is simply 
+\begin{equation}\delta W = \frac{\sum_i (-\partial E_i/\partial x) \exp (-\beta E_i)}{\sum_i \exp(-\beta E_i)}\delta x.\end{equation}
+The numerator is simply $-\partial Z/\beta (\partial x)$ and the denominator is just the partition function. Hence, 
+\begin{equation}
+    \delta W = \frac{1}{\beta Z}\pdv{Z}{x}\delta x = \frac{1}{\beta}\pdv{\ln Z}{x}\delta x.
+\end{equation}
+\subsection{Exercise}
+If we generalize $x$ to $V$, then we can use the fact that work done is $\dd W = p\dd V$ and since 
+\begin{equation}\label{work}
+\dd W = \frac{1}{\beta}\pdv{\ln Z}{V}\dd V, \end{equation}
+it is apparent that 
+\begin{equation}
+    \overline p = \frac{1}{Z}\pdv{\ln Z}{V}
+\end{equation}
+\subsection{Exercise (Old)}
+Generally, we know that for a regular ideal gas, the equation of state is the ideal gas law $pV = nRT$. With this equation, we can relate all intrinsic variables pressure, volume, and temperature together. The above equation can be related to the equation of state because we contain variables of $\beta, V,$ and $p$ (meaning that $\beta$ depends on temperature $T$). This means that if we know either pressure or volume, we can find temperature and vice versa with just the partition function. Most likely, $\beta$ has units of 1/Energy as the coefficients of exponentials in the partition coefficient ($e = \sum e^{-\beta E_i}$) must be dimensionless. Furthermore, as deduced before, it also must depend on $T$, so the best value for $\beta$ should be $1/k_B T$, or the thermodynamic beta as it is called. 
+\subsection{Exercise}
+Since $Z$ is a function of $\beta$ and $x$, we can write by the multivariable chain rule that under a quasi-static change in which parameters $x$ and $\beta$ change slowly, the change in partition function follows:
+\begin{equation}d\ln Z = \pdv{\ln Z}{x}\dd x + \pdv{\ln Z}{\beta}\dd \beta.\end{equation}
+Substituting equations for work and average energy means 
+\begin{equation}
+    \dd \ln Z = \beta \dd W - \overline E \dd \beta 
+\end{equation}
+Note that $\dd \overline{E} + \dd W = \dd Q$. So, we can rewrite the above equation as 
+\begin{equation}
+    \dd (\ln Z + \overline{E}\beta) = \beta (\dd W + \dd \overline{E}) = \beta \dd Q
+\end{equation}
+We know that entropy is given as 
+\begin{equation}
+    \dd S = \frac{\dd Q}{T}
+\end{equation}
+Hence, this now implies that 
+\begin{align}
+    \beta T \dd S &= \dd (\ln Z + \overline E \beta) \\
+    S &= \frac{1}{\beta T}(\ln Z + \overline E \beta)
+\end{align}
+\subsection{Exercise}
+Suppose that two systems have energy states $E_i$ and $E_j$. As the two systems are interacting weakly, the total energy is $E_t = E_i + E_j$ as nothing is dissipated. So then look at the total partition function. 
+\begin{align}
+    Z &= \sum_{i, j}\exp (-\beta E_t)\\
+    &= \sum_{i, j}\exp (-\beta (E_i + E_j))\\
+    &= \sum_{i, j}\exp(-\beta E_i) \exp(-\beta E_j) \\
+    &= \left(\sum_i \exp(-\beta E_i)\right) \left(\sum_j \exp(-\beta E_j)\right) \\
+    &= Z_1 Z_2
+\end{align}
+So the total partition function will be multiplied to each other 
+\begin{equation}
+    Z_t = Z_1 Z_2
+\end{equation}
+By logarithm rules, the natural logarithm is then expressed as
+\begin{equation}
+    \ln Z = \ln Z_1 + \ln Z_2
+\end{equation}
+Therefore, the total average energy follows 
+\begin{equation}\overline E_t = -\pdv{\ln Z_t}{\beta} = -\pdv{(\ln Z_1 + \ln Z_2)}{\beta} = -\left(\pdv{\ln Z_1}{\beta} + \pdv{\ln Z_2}{\beta}\right) = \overline{E_1} + \overline{E_2}
+\end{equation}
+which is additive. Similarly, the total entropy follows 
+\begin{equation}
+    S_t = \frac{1}{\beta T}(\ln Z_t + \overline E_t \beta) = \frac{1}{\beta T}(\ln Z_1 + \overline E_1 \beta) + \frac{1}{\beta T}(\ln Z_2 + \overline E_2 \beta) = S_1 + S_2
+\end{equation}
+which is additive as well.
+\newpage 

@@ -1,0 +1,369 @@
+\section{Green's Functions in Quantum Mechanics}
+\subsection{Exercise}
+
+Using completeness, we can write the equation in the packet as
+\begin{equation}
+    \int \int \int \int dx_1dx_2dx_3dx_4 \bra{x_b}e^{-i\hat H (T-t_2)}\ket{x_1}\bra{x_1}\hat x \ket{x_3}\bra{x_3} e^{-i\hat H (t_2-t_1)}\ket{x_2}\bra{x_2} \hat x \ket{x_4}\bra{x_4}e^{-i\hat H (t_1+T)}\ket{x_a}.
+\end{equation}
+By the properties of position eigenkets and the orthonormality of basis kets,
+\begin{align}
+    \bra{x_i}\hat x \ket{x_j} = x_i \delta(x_i-x_j),
+\end{align}
+we get 
+\begin{equation}
+    \int \int \int \int dx_1dx_2dx_3dx_4 x_1x_2\delta(x_1-x_3)\delta(x_2-x_4)\bra{x_b}e^{-i\hat H (T-t_2)} \ket{x_1}\bra{x_3}e^{-i\hat H (t_2-t_1)}\ket{x_2}\bra{x_4}e^{-i\hat H (t_1+T)}\ket{x_a}.
+\end{equation}
+Using 
+\begin{equation}
+    \label{ketint}
+    \bra{x_b}e^{-i\hat H (t_b-t_a)}\ket{x_a}=\int_{x_a}^{x_b} \mathcal{D}[x(t)] \exp{i \int_{t_a}^{t_b} dt \mathcal{L}}
+\end{equation}
+and the properties of the Dirac delta function, we get
+\begin{align}
+\label{8eq1}
+    \int \mathcal D [x(t)] x_1x_2 \exp{i [\int_{t_2}^T dt \mathcal L+\int_{t_1}^{t_2} dt \mathcal L+\int_{-T}^{t_1} dt \mathcal L]}&
+    = \int \mathcal D [x(t)] x_1 x_2 \exp{i \int_{-T}^T \mathcal L}
+\end{align}
+and thus
+\begin{equation}
+\label{8eq2}
+    \bra{x_b}e^{-i\hat H (T-t_2)}\hat x e^{-i\hat H (t_2-t_1)}\hat x e^{-i\hat H (t_1+T)}\ket{x_a} = \int \mathcal D [x(t)] x_1 x_2 \exp{i \int_{-T}^T \mathcal L dt}.
+\end{equation}
+Note how we can only add the integrals in \eqref{8eq1} if $t_1<t_2$, as otherwise, the sign of the integral will flip, thus misaligning the bounds of integration. Since the equation \eqref{8eq2} can only hold with this time ordering, and since this time ordering is provided by the bounds of integration given by 
+\begin{equation}
+    \exp{-iH(t_2-t_1)},
+\end{equation}
+we can associate this term with time ordering: 
+\begin{equation}
+    \hat x \exp{-iH(t_2-t_1)} \hat x \Longleftrightarrow T\{\hat x_1 \hat x_2\}.
+\end{equation}
+This is made more obvious when expanding the Heisenberg kets
+\begin{equation}
+    \hat x (t_i)=\hat x_i=e^{iHt_i}\hat x e^{-iHt_i}. 
+\end{equation}
+Since time ordering automatically assures the condition $t_1<t_2$ when
+\begin{equation}
+    T\{\hat x(t_1)\hat x(t_2)\}=\hat x(t_2) \hat x(t_1),
+\end{equation}
+we have
+\begin{align}
+    e^{-iH(T-t_2)}\hat x e^{iH(t_2-t_1)}\hat x e^{-iH(t_1+T)}\\&=e^{-iHT}e^{iHt_2}\hat x e^{-iHt_2}e^{iHt_1}\hat x e^{-iHt_1}e^{-iHT}\\&=e^{-iHT}\hat x(t_2)\hat x(t_1)e^{-iHT}\\&=e^{-iHT}T\{\hat x(t_1)\hat x(t_2)\}e^{-iHT}
+\end{align}
+and thus
+\begin{equation}
+    \bra{x_b}e^{-iHT}T\{\hat x(t_1)\hat x(t_2)\}e^{-iHT}\ket{x_a}=\int \mathcal D [x(t)] x_1 x_2 \exp{i \int_{-T}^T \mathcal Ldt}.
+\end{equation}
+
+
+\subsection{Exercise}
+
+\begin{equation}
+    \int \mathcal D [x(t)] x_1 x_2 e^{i\int_{-T}^T dtL}=\bra{x_b} e^{-iHT} T\{\hat x(t_1) \hat x(t_2)\}e^{-iHT}\ket{x_a}.
+\end{equation}
+We also know that
+\begin{equation}
+    \int \mathcal D [x(t)] e^{i\int_{-T}^T dtL}=\bra{x_b} e^{-2iHT} \ket{x_a}
+\end{equation}
+from \eqref{ketint}. We can insert completeness of energy eigenstates ($\sum_i \ket{E_1}\bra{E_i}=1$) into $e^{-iHT}\ket{x_a}$, giving
+\begin{equation}
+    \sum_i \bra{E_i}\ket{x_a} e^{-iHT}\ket{E_i}=\sum_i \bra{E_i}\ket{x_a} e^{-iE_iT}\ket{E_i}.
+\end{equation}
+In the limit $T\to \infty(1-i\epsilon)$, this sum is dominated by the smallest factor in the exponent, just as with the classical limit of the path integral. This minimum of the exponent is given by the ground state with energy $E_0$. Then, we have (letting $\ket{E_0}=\ket{\Omega}$)
+\begin{equation}
+    \lim_{T\to \infty(1-i\epsilon)}e^{-iHT}\ket{x_a}= \lim_{T\to \infty(1-i\epsilon)}\sum_i \bra{E_i}\ket{x_a} e^{-iE_iT}\ket{E_i}=\langle \Omega| x_a \rangle e^{-iE_0*\infty (1-i\epsilon)}\ket \Omega.
+\end{equation}
+Inserting this (and its conjugate transpose) into our previous expressions, we get 
+\begin{equation}
+     \lim_{T\to \infty(1-i\epsilon)}\bra{x_b} e^{-iHT} T\{\hat x(t_1) \hat x(t_2)\}e^{-iHT}\ket{x_a}=\langle x_b|\Omega \rangle \langle \Omega|x_a\rangle e^{-2iE_0*\infty(1-i\epsilon)}\bra{\Omega}T\{\hat x(t_1) \hat x(t_2)\}\ket{\Omega}
+\end{equation}
+and
+\begin{equation}
+    \lim_{T\to \infty(1-i\epsilon)}\bra{x_b} e^{-2iHT} \ket{x_a}=\langle x_b|\Omega \rangle \langle \Omega|x_a\rangle e^{-2iE_0*\infty(1-i\epsilon)}\bra{\Omega}\ket{\Omega}.
+\end{equation}
+If the vacuum state is normalized
+\begin{equation}
+    \bra{\Omega}\ket{\Omega}=1,
+\end{equation}
+then 
+\begin{equation}
+    \lim_{T\to \infty(1-i\epsilon)} \frac{\bra{x_b} e^{-iHT} T\{\hat x(t_1) \hat x(t_2)\}e^{-iHT}\ket{x_a}}{\bra{x_b} e^{-2iHT} \ket{x_a}}=\bra{\Omega}T\{\hat x(t_1) \hat x(t_2)\}\ket{\Omega}
+\end{equation}
+and consequently
+\begin{equation}
+    \lim_{T\to \infty(1-i\epsilon)} \frac{\int \mathcal D [x(t)] x_1 x_2 e^{i\int_{-T}^T dtL}}{\int \mathcal D [x(t)] e^{i\int_{-T}^T dtL}}=\bra{\Omega}T\{\hat x(t_1) \hat x(t_2)\}\ket{\Omega}=G(t_1,t_2).
+\end{equation}
+
+\subsection{Exercise}
+ 
+\begin{equation}
+    Z[J]= \frac{\int \mathcal D [x(t)] e^{i(S+\int dt J(t)x(t))}}{\int \mathcal D [x(t)] e^{iS}}.
+\end{equation}
+The denominator is independent of $J$, so we can consider only the numerator while differentiating, which we denote as $W[J]$. Bringing the functional derivative through the integral, we have
+\begin{equation}
+    \frac 1 i \frac{\delta}{\delta J(t_1)} W[J]=\frac 1 i \int \mathcal D[x(t)] \frac{\delta}{\delta J(t_1)} e^{i(S+\int dt J(t)x(t))}.
+\end{equation}
+Using the properties of the functional derivative given in the handout and the chain rule, this becomes
+\begin{equation}
+    \frac 1 i \int \mathcal D[x(t)] e^{i(S+\int dt J(t)x(t))}\frac{\delta  (i\int dt J(t)x(t))}{\delta J(t_1)}=\int \mathcal D[x(t)]  e^{i(S+\int dt J(t)x(t))}x(t_1).
+\end{equation}
+Since this factor of $x(t_1)$ is independent of $J$, continued differentiation yields
+\begin{equation}
+    \frac 1 i \frac{\delta}{\delta J(t_1)} ...\frac 1 i \frac{\delta}{\delta J(t_n)}W[J]=\int \mathcal D[x(t)] e^{i(S+\int dt J(t)x(t))}x(t_1)...x(t_n).
+\end{equation}
+Setting $J=0$ eliminates the $J$ term from the exponent and gives
+\begin{equation}
+    \frac 1 i \frac{\delta}{\delta J(t_1)} ...\frac 1 i \frac{\delta}{\delta J(t_n)}W[J]|_{J=0}=\int \mathcal D[x(t)] e^{iS}x(t_1)...x(t_n).
+\end{equation}
+Reinserting the denominator and using the correlation function's relation to the path integral from the packet, this becomes
+\begin{equation}
+    \frac 1 i \frac{\delta}{\delta J(t_1)} ...\frac 1 i \frac{\delta}{\delta J(t_n)}Z[J]|_{J=0}=\frac{\int \mathcal D[x(t)] e^{iS}x(t_1)...x(t_n)}{\int \mathcal D [x(t)] e^{iS}}=\bra{\Omega}T\{\hat x(t_1) \hat x(t_2)...\hat x(t_n)\}\ket{\Omega}.
+\end{equation}
+
+
+\subsection{Exercise}
+Under this shift, the Lagrangian becomes
+\begin{equation}
+    L_0'=\frac 1 2 \dot x^2 + \dot x \dot \epsilon + O(\dot \epsilon ^2)-\frac{\omega^2}{2}x^2-\omega^2x\epsilon +O(\epsilon^2)=L_0+\dot x \dot \epsilon -\omega^2 x \epsilon.
+\end{equation}
+The action is thus
+\begin{equation}
+    S'=S_0+\int_{-T}^T dt (\dot x \dot \epsilon -\omega^2 x \epsilon).
+\end{equation}
+Expanding the exponential to first order yields
+\begin{equation}
+    \int \mathcal D[x(t)] e^{iS'}=\int \mathcal D[x(t)]e^{iS_0}[1+i\int_{-T}^T dt (\dot x \dot \epsilon -\omega^2 x \epsilon)].
+\end{equation}
+Integrating by parts,
+\begin{equation}
+    \int_{-T}^T dt \dot x \dot \epsilon = \dot x \epsilon |_{-T}^T -\int_{-T}^T dt\ddot x\epsilon= -\int_{-T}^T dt\ddot x\epsilon
+\end{equation}
+where the first term vanishes due to the boundary conditions of $\epsilon$. Inserting this into the expansion gives
+\begin{equation}
+    \int \mathcal D[x(t)] e^{iS'}=\int \mathcal D[x(t)]e^{iS_0}[1+i\int_{-T}^T dt (-\ddot x \epsilon -\omega^2 x \epsilon)]=\int \mathcal D[x(t)]e^{iS_0}[1-i\int_{-T}^T dt \epsilon (\partial_t^2+\omega^2)x].
+\end{equation}
+Now expanding the total function in (87) in the packet gives
+\begin{equation}
+    \int \mathcal D[x(t)]x_1e^{iS_0}=\int \mathcal D[x(t)](x_1+\epsilon_1)e^{iS_0}[1-i\int_{-T}^T dt \epsilon (\partial_t^2+\omega^2)x].
+\end{equation}
+Expanding and keeping terms only first order in $\epsilon$ gives
+\begin{equation}
+    \label{expansion}
+    \int \mathcal D[x(t)]x_1e^{iS_0}=\int \mathcal D[x(t)]x_1e^{iS_0}+\int \mathcal D[x(t)]\epsilon_1e^{iS_0}-i\int \mathcal D[x(t)]e^{iS_0}\int_{-T}^T dt \epsilon (\partial_t^2+\omega^2)xx_1.
+\end{equation}
+Since $\epsilon_1=\epsilon(t_1)=\int_{-T}^T \epsilon(t) \delta(t-t_1)$, we have 
+\begin{equation}
+    \int \mathcal D[x(t)]\epsilon_1e^{iS_0}-i\int \mathcal D[x(t)]e^{iS_0}\int_{-T}^T dt \epsilon (\partial_t^2+\omega^2)xx_1=-i\int \mathcal D[x(t)]e^{iS_0}\int_{-T}^T dt \epsilon(t)( (\partial_t^2+\omega^2)xx_1+i\delta(t-t_1)).
+\end{equation}
+For the equality in \eqref{expansion} to hold, this term must equal 0:
+\begin{equation}
+    \int \mathcal D[x(t)]e^{iS_0}\int_{-T}^T dt \epsilon(t)( (\partial_t^2+\omega^2)xx_1+i\delta(t-t_1))=0.
+\end{equation}
+Now bringing the path integral past the time integral gives 
+\begin{equation}
+    \int_{-T}^T dt \epsilon(t)\int \mathcal D[x(t)]e^{iS_0}( (\partial_t^2+\omega^2)xx_1+i\delta(t-t_1))=0 \to \int \mathcal D[x(t)]e^{iS_0}( (\partial_t^2+\omega^2)xx_1+i\delta(t-t_1))=0
+\end{equation}
+since $\epsilon(t)$ is an arbitrary function. Again, bringing the path integral past the operator $\partial_t^2+\omega^2$ gives
+\begin{equation}
+    (\partial_t^2+\omega^2)\int \mathcal D[x(t)]e^{iS_0} xx_1=-i\delta(t-t_1)\int \mathcal D[x(t)]e^{iS_0} \to  (\partial_t^2+\omega^2) \frac{\int \mathcal D[x(t)]e^{iS_0} xx_1}{\int \mathcal D[x(t)]e^{iS_0}}=-i\delta(t-t_1).
+\end{equation}
+Due to (83) in the packet, we know this is just the Green's function for $x$ and $x_1$, and so we have the relation
+\begin{equation}
+    \label{Green}
+    (\partial_t^2 + \omega^2)\bra{0}T\{\hat x(t)\hat x_1(t)\} \ket{0}=-i\delta(t-t_1).
+\end{equation}
+
+\subsection{Exercise}
+Inserting the expression for $x'$ into the equation, we get
+\begin{align}
+    \label{mess}
+    \int dt \frac 1 2 \left[ x(-\partial^2-\omega^2)x-i\int dt'G(t,t')J(t')(-\partial^2-\omega^2)x-i\int dt' J(t')x (-\partial^2-\omega^2)G(t,t')\right]\\+\int dt \frac 1 2 \left[-\int dt'G(t,t')J(t')(-\partial^2-\omega^2)\int dt''G(t,t'')J(t'') \right]+\frac i 2 \int dtdt' J(t)G(t,t')J(t').
+\end{align}
+Due to \eqref{Green}, we have
+\begin{equation}
+    (-\partial^2-\omega^2)G(t,t')=i\delta(t-t').
+\end{equation}
+Inserting this into the second to last term gives
+\begin{equation}
+    -\frac i 2 \int dt \int dt' G(t,t')J(t')\delta(t-t'')J(t'')=-\frac i 2 \int dt dt' J(t)G(t,t')J(t') 
+\end{equation}
+which precisely cancels the last term in \eqref{mess}. The first term in \eqref{mess} can be evaluated using integration by parts, giving
+\begin{equation}
+    \frac 1 2 \int dt (-x\ddot x-\omega^2x^2)=\frac 1 2 \left[-x\dot x|_{-T}^T + \int dt (\dot x)^2-\omega^2x^2\right].
+\end{equation}
+Assuming the $x$ vanishes at the boundary conditions (Note: in the limit of the Green's function, this means that $x$ vanishes at $\pm \infty(1-i\epsilon)$), this is simply
+\begin{equation}
+    \int dt \mathcal L_0[x]
+\end{equation}
+with $\mathcal L_0$ being the harmonic oscillator Lagrangian. The second term in \eqref{mess} can also be evaluated using integration by parts:
+\begin{align}
+    \frac i 2 \int dt dt'G(t,t')J(t')(\partial^2+\omega^2)x=\frac i 2 \left[\int dt dt'G(t,t')J(t')\dot x|_{-T}^T-\int dt dt'\partial_t G(t,t')J(t')\dot x  +\int dt dt'G(t,t')J(t')\omega^2x \right]\\=\frac i 2 \left[\int dt dt'G(t,t')J(t')\dot x|_{-T}^T-\int dt dt'G(t,t')J(t')x|_{-T}^T+\int dt dt'\partial^2_t G(t,t')J(t')x  +\int dt dt'G(t,t')J(t')\omega^2x \right]\\=\int dt dt' J(t')x(\partial_t^2+\omega^2)G(t,t')=\frac 1 2 \int dt dt'J(t')x\delta(t'-t)=\frac 1 2 \int dt Jx
+\end{align}
+where it was assumed that $\dot x$ also vanished at the boundary conditions. Finally, the third term in \eqref{mess} can be evaluated as 
+\begin{equation}
+    -\frac i 2 \int dtdt'J(t')x(-\partial^2-\omega^2)G(t,t')=\frac 1 2 \int dtdt'J(t')x\delta(t-t')=\frac 1 2 \int dt Jx.
+\end{equation}
+Combining everything, we have
+\begin{equation}
+    \int dt \frac 1 2 [x'(-\partial^2-\omega^2)x']+\frac i 2 \int dt dt' J(t)G(t,t')J(t')=\int dt (\mathcal L_0[x]+Jx).
+\end{equation}
+Using the definition of $Z[J]$, we get
+\begin{equation}
+    \label{partfunct}
+    Z[J]=\frac{\int \mathcal D[x(t)] e^{i(\int dt(\mathcal L_0+Jx)}}{\int \mathcal D[x(t)]e^{i\int dt \mathcal L_0}}=\exp[-\frac 1 2 \int dtdt'J(t)G(t,t')J(t')]\frac{\int \mathcal D[x(t)] e^{\frac i 2\int dtx'(-\partial^2-\omega^2)x'}}{\int \mathcal D[x(t)]e^{i\int dt \mathcal L_0}}. 
+\end{equation}
+The exponent of this expression can be integrated by parts to give
+\begin{equation}
+    \int dt \frac 1 2 [x'(-\partial^2-\omega^2)x']=-\frac 1 2 x'\dot x'|_{-T}^T+\int dt \frac 1 2 ((\dot x')^2-\omega^2x'^2)=\int dt \mathcal L_0 [x']
+\end{equation}
+where it was assumed $x'$ vanished at the boundary conditions as well (meaning the Green's function approaches $0$ as $t\to \pm \infty(1-i\epsilon)$). Because $x'=x+\epsilon(t)$, we know a change of variable will not alter the functional integration. Thus,
+\begin{equation}
+    \int \mathcal D[x(t)] e^{\frac i 2\int dtx'(-\partial^2-\omega^2)x'}=\int \mathcal D[x'(t)] e^{ i \int dt\mathcal L_0[x']}=\int \mathcal D[x(t)] e^{ i \int dt\mathcal L_0[x]}.
+\end{equation}
+Inserting this into \eqref{partfunct} gives
+\begin{equation}
+    Z[J]=\exp[-\frac 1 2 \int dtdt'J(t)G(t,t')J(t')].
+\end{equation}
+
+\subsection{Exercise}
+Since we know 
+\begin{equation}
+    Z[J]=\exp[-\frac 1 2 \int dt dt' J(t)G(t,t')J(t')],
+\end{equation}
+we can take functional derivatives of this to obtain the n-point functions. The first functional derivative is 
+\begin{align}
+    \frac \delta {\delta J(t_1)} Z[J]=e^{-\frac 1 2 \int dt dt' J(t)G(t,t')J(t')}\frac \delta {\delta J(t_1)}\left(-\frac 1 2 \int dt dt' J(t)G(t,t')J(t')\right)\\=-\frac 1 2 Z[J]\left( \int dt' G(t_1,t')J(t')+\int dt J(t)G(t,t_1)\right).
+\end{align}
+Relabeling $t'\to t$ and noting that $G(t,t_1)=G(t_1,t)$ due to time ordering, this is
+\begin{equation}
+    \label{firstfunctderiv}
+    \frac \delta {\delta J(t_1)}Z[J]=-\frac 1 2 Z[J] \left (2\int dt G(t_1,t)J(t) \right)=-Z[J]\int dt G(t_1,t)J(t).
+\end{equation}
+Setting $J=0$ makes this expression 0, so the 1-point correlation function vanishes. Continuing, the second functional derivative will be 
+\begin{equation}
+    \frac \delta {\delta J(t_2)} \left (-Z[J]\int dt G(t_1,t)J(t)\right )= - \int dt G(t_1,t)J(t)\frac \delta {\delta J(t_2)} Z[J]-Z[J]\frac \delta {\delta J(t_2)} \int dt G(t_1,t)J(t).
+\end{equation}
+The first term is given by \eqref{firstfunctderiv} with $t_1\to t_2$, and the second is 
+\begin{equation}
+    -Z[J]G(t_1,t_2).
+\end{equation}
+When $J=0$, the first term vanishes again, and Z[J]=1, leaving
+\begin{equation}
+    \frac \delta {\delta J(t_2)}\frac \delta {\delta J(t_1)} Z[J]|_{J=0}=-G(t_1,t_2).
+\end{equation}
+The third functional derivative will be
+\begin{equation}
+    \label{thirdfunct}
+    \frac \delta {\delta J(t_1)}\frac \delta {\delta J(t_2)}\frac \delta {\delta J(t_3)} Z[J]=\frac \delta {\delta J(t_3)}\left [  Z[J]\int dt G(t_1,t)J(t)\int dt G(t_2,t)J(t) -Z[J]G(t_1,t_2)\right].
+\end{equation}
+The last term will clearly be 0 when $J(t)=0$ due to \eqref{firstfunctderiv}. The first term is 0 because when expanding using the product rule, at least one of the integrals will have a factor of $J(t)$, and setting this to $0$ will kill this first term. We have thus spotted a pattern in these derivatives: whenever we have an odd number of derivatives, factors of $J$ are multiplied by all terms in the expansions, and setting it to $0$ kills all the terms. When there is an even number of derivatives, these factors of $J$ are differentiated due to the product rule, thereby leaving factors of Green's functions and removing factors of $J$ from coefficients of the terms. 
+
+\subsection{Exercise}
+Expanding \eqref{thirdfunct} gives 
+\begin{align}
+    \frac \delta {\delta J(t_1)}\frac \delta {\delta J(t_2)}\frac \delta {\delta J(t_3)} Z[J]=-Z[J]\int dt G(t_1,t)J(t)\int dt G(t_2,t)J(t)\int dt G(t_3,t)J(t)\\+Z[J]G(t_1,t_3)\int dt G(t_2,t)J(t)+Z[J]G(t_2,t_3)\int dt G(t_1,t)J(t)+Z[J]\int dt G(t_3,t)J(t)G(t_1,t_2).
+\end{align}
+Differentiating again with respect to $J(t_4)$ gives
+\begin{align}
+    \frac \delta {\delta J(t_1)}\frac \delta {\delta J(t_2)}\frac \delta {\delta J(t_3)}\frac \delta {\delta J(t_4)} Z[J]=\\=Z[J]\int dt G(t_1,t)J(t)\int dt G(t_2,t)J(t)\int dt G(t_3,t)J(t)\int dt G(t_4,t)J(t) \\-Z[J]\int dt G(t_4,t)J(t)G(t_1,t_3)\int dt G(t_2,t)J(t)+Z[J]G(t_1,t_3)G(t_2,t_4)\\-Z[J]\int dt G(t_4,t)J(t)G(t_2,t_3)\int dt G(t_1,t)J(t)+Z[J]G(t_2,t_3)G(t_1,t_4)\\-Z[J]\int dt G(t_4,t)J(t)G(t_1,t_2)\int dt G(t_3,t)J(t)+Z[J]G(t_1,t_2)G(t_3,t_4).
+\end{align}
+Now $J=0$ and $Z[J]=1$, so 
+\begin{align}
+    \frac \delta {\delta J(t_1)}\frac \delta {\delta J(t_2)}\frac \delta {\delta J(t_3)}\frac \delta {\delta J(t_4)} Z[J]|_{J=0}=i^4\bra{\Omega}T\{\hat x_1 \hat x_2 \hat x_3 \hat x_4 \} \ket{\Omega}\\=\bra{\Omega}T\{\hat x_1 \hat x_2 \hat x_3 \hat x_4 \} \ket{\Omega}=G_{12}G_{34}+G_{13}G_{24}+G_{14}G_{23}
+\end{align}
+where $G_{ij}=G(t_i,t_j)$.
+
+
+
+
+\subsection{Exercise}
+We know that
+\begin{equation}
+    G(t_1,t_2)=\lim_{T\to \infty(1-i\epsilon)}\frac{\int \mathcal D[x(t)]x(t_1)x(t_2)e^{iS}}{\int \mathcal D[x(t)]e^{iS}}.
+\end{equation}
+Furthermore, from section 5.4, we know ($T=t_b-t_a\to T-(-T)=2T$).
+\begin{equation}
+    \int \mathcal D[x(t)]e^{iS}=K=\left(\frac{m\omega}{2\pi i \sin(2\omega T)}\right)^{1/2}e^{iS_{cl}}.
+\end{equation}
+The numerator can be written as
+\begin{equation}
+    \label{harmgreen}
+    \int dx_1 dx_2 x_1 x_2 \int \mathcal D[x(t)] e^{iS}.
+\end{equation}
+We know when $x_a=x_b=0$, 
+\begin{equation}
+    S_{cl}=\frac 1 {m\omega \sin(2\omega T)}\int_{-T}^T\int_{T}^t \sin(\omega(T+t))\sin(\omega(t'-T))f(t')f(t)dt'dt.
+\end{equation}
+In order to calculate the numerator, we can replace $S$ with the discrete approximation $S_n$ given in \eqref{beq6}. The numerator then becomes
+\begin{align}
+    \int dx_1dx_2 x_1x_2\int \mathcal D[x(t)] \exp[iS_1+iS_2+iS_3+i\sum_{n=4}^{N}S_n].
+\end{align}
+We can now do the same coordinate transform to $y_i$ as in exercise 5.4, and the result is
+\begin{equation}
+    \int dx_1 dx_2 x_1 x_2 \int \mathcal D[x(t)] \exp[i\sum_{n=1}^NS_n]=C(T)\exp[i S_{cl}]\int \mathcal D[y(t)](\bar x_1+y_1)(\bar x_2+y_2)\exp[i\sum_{n=1}^N S_n]
+\end{equation}
+where $S_n$ is defined by \eqref{action} with $y$ instead of $x$ as a variable and with $T\to 2T$. Remembering that one point Green's functions vanish, and hence that the cross terms with single factors of $y_i$ vanish, the integral becomes
+\begin{equation}
+    \exp[iS_{cl}]\left(\bar x_1\bar x_2 C(T)\int \mathcal D[y(t)]\exp[i\sum_{n=1}^N S_n]+C(T)\int \mathcal D[y(t)]y_1y_2\exp[i\sum_{n=1}^N S_n]\right).
+\end{equation}
+Using the definition of $F(T)$ given in \eqref{Fdef} and cancelling the factor coming from the denominator of the Green's function, we get (omitting the limit)
+\begin{equation}
+    G(t_1,t_2)=\frac{\exp[iS_{cl}]\left(\bar x_1\bar x_2 F(T)+C(T)\int \mathcal D[y(t)]y_1y_2\exp[i\sum_{n=1}^N S_n]\right)}{F(T)\exp[iS_{cl}]}=\bar x_1\bar x_2+\frac{\int \mathcal D[y(t)]y_1y_2\exp[i\sum_{n=1}^N S_n]}{\int \mathcal D[y(t)]\exp[i\sum_{n=1}^N S_n]}.
+\end{equation}
+The advantage now is that the action is that of the unforced harmonic oscillator. The sum in the exponential can be written as
+\begin{align}
+    i\sum _{n=1}^N S_{n}= \sum _{n=1}^N\frac{im\omega}{2\sin(2\omega T)}[\cos(2\omega T)(y_n^2+y_{n-1}^2)-2y_ny_{n-1}]\\=\begin{pmatrix}y_1 & y_2 & ... & y_{N-1}\end{pmatrix}\begin{pmatrix} 
+    2k\cos(2\omega T) & -2k & 0 & 0 &... \\ 0 & 2k\cos(2\omega T) & -2k & 0 &... \\ ... 
+    \end{pmatrix} \begin{pmatrix} y_1\\y_2\\... \\y_{N-1}
+    \end{pmatrix}.
+\end{align}
+where 
+\begin{equation}
+    k=\frac{im\omega}{2\sin(2\omega T)}.
+\end{equation}
+In Zee QFT, the formula 
+\begin{equation}
+    \langle x_i x_j \rangle =\frac{\int...\int dx_1...dx_N e^{-\frac 1 2 x\cdot A \cdot x}x_ix_j}{\int...\int dx_1...dx_N e^{-\frac 1 2 x\cdot A \cdot x}}=A_{ij}^{-1}
+\end{equation}
+is derived by differentiating the generalization of \eqref{beq4}. Letting
+\begin{equation}
+    A=\begin{pmatrix} 
+    -4k\cos(2\omega T) & 4k & 0 & 0 &... \\ 0 & -4k\cos(2\omega T) & 4k & 0 &... \\ ... 
+    \end{pmatrix}
+\end{equation}
+and 
+\begin{equation}
+    a=-4k\cos(2\omega T), b=4k,
+\end{equation}
+we get
+\begin{equation}
+    A^{-1}_{12}=-\frac b {a^2}.
+\end{equation}
+This was obtained by entering matrices of the form
+\begin{equation}
+    \begin{pmatrix} a & b & 0 \\ 0 & a & b \\ 0 & 0 & a\end{pmatrix}^{-1}=\begin{pmatrix} a^{-1}& -(b/a^2) & b^2/a^3 \\  0 & a^{-1} & -(b/a^2) \\ 0 & 0 & a^{-1} \end{pmatrix}, \begin{pmatrix} a & b & 0 & 0\\ 0 & a & b & 0\\ 0 & 0 & a & b \\ 0 & 0 & 0 & a\end{pmatrix}^{-1}=\begin{pmatrix} a^{-1}& -(b/a^2) & b^2/a^3 & -(b^3/a^4)\\  0 & a^{-1} & -(b/a^2) & b^2/a^3\\ 0 & 0 & a^{-1} & -(b/a^2)\\ 0 & 0 & 0 & a^{-1} \end{pmatrix}
+\end{equation}
+using Wolfram Alpha. Thus we finally get that 
+\begin{equation}
+    G(t_1,t_2)=\lim_{T\to \infty(1-i\epsilon)}(\bar x_1 \bar x_2-\frac{4k}{(4k\cos(2\omega T))^2}).
+\end{equation}
+Simplifying the last term gives
+\begin{equation}
+    -\frac{1}{4k\cos^2(2\omega T)}=\frac{i\sin(2\omega T)}{2\omega m \cos^2(2\omega T)}.
+\end{equation}
+When $x_a=x_b=0$, we have by \eqref{B} and \eqref{A} that 
+\begin{equation}
+    \bar x (t)= -\frac 1 {m\omega} \frac{\sin(\omega(T+t))}{\sin(2\omega T)}\int_{-T}^T \sin(\omega(T-t'))f(t')dt'+\frac 1 {m\omega}\int_{-T}^t \sin(\omega(t-t'))f(t')dt'.
+\end{equation}
+In order for 
+\begin{equation}
+    G(t_1,t_2)=\frac 1 {2\omega} e^{-i\omega|t_2-t_1|}
+\end{equation}
+to hold, we must have
+\begin{equation}
+    \frac 1 {2\omega} e^{-i\omega|t_2-t_1|}=\lim_{T\to \infty(1-i\epsilon)}\left(\bar x_1 \bar x_2-\frac{4k}{(4k\cos(2\omega T))^2}=\cos(\omega|t_2-t_1|)-i\sin(\omega|t_2-t_1|)\right)
+\end{equation}
+or 
+\begin{align}
+    \lim_{T\to \infty(1-i\epsilon)}\left(-\frac 1 {m\omega} \frac{\sin(\omega(T+t_1))}{\sin(2\omega T)}\int_{-T}^T \sin(\omega(T-t'))f(t')dt'+\frac 1 {m\omega}\int_{-T}^{t_1} \sin(\omega(t_1-t'))f(t')dt'\right)\\\left(-\frac 1 {m\omega} \frac{\sin(\omega(T+t_2))}{\sin(2\omega T)}\int_{-T}^T \sin(\omega(T-t'))f(t')dt'+\frac 1 {m\omega}\int_{-T}^{t_2} \sin(\omega(t_2-t'))f(t')dt'\right)\\=\lim_{T\to \infty(1-i\epsilon)}\frac 1 {2\omega}\left[ \cos(\omega|t_2-t_1|)-i\sin(\omega|t_2-t_1|)-\frac{i\sin(2\omega T)}{m \cos^2(2\omega T)}\right ].
+\end{align}
+We weren't sure how these expressions would reduce, especially with the factors of $\sim \int f dt$, but our best guess was that the limit somehow killed these terms and reduced the expression to equality.

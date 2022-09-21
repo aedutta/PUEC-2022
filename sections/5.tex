@@ -1,0 +1,274 @@
+\section{Harmonic Oscillator Propagator}
+\subsection{Exercise}
+\begin{equation}
+    \ddot x_c = -A\omega^2\sin(\omega t)-B\omega^2 \cos(\omega t) = -\omega^2x_c \\
+\end{equation}
+Using the equation
+\begin{align}
+    f(x) &= \int _{s(x)}^{g(x)} h(x,t)dt \\
+    \frac {df}{dx} = \int_{s(x)}^{g(x)}\partial_x h(x,t)dt&+h(x,g(x))\frac{dg}{dx}-h(x,s(x))\frac{ds}{dx},
+\end{align}
+and setting $x=t$, $t=t'$, $h(t,t')=sin(\omega(t-t'))f(t')$, $g(t)=t$, and $s(t)=t_a$ in the formula, we get
+\begin{align}
+    \dot x_p&=-\frac 1 m \frac{\cos(\omega(t_a-t))}{\sin(\omega(t_b-t_a))}\int_{t_a}^{t_b}\sin(\omega(t_b-t'))f(t')dt'+\frac{1}{m\omega}[\int_{t_a}^t\omega \cos(\omega(t-t'))f(t')dt'+\sin(\omega(t-t))f(t)]\\
+    &=-\frac 1 m \frac{\cos(\omega(t_a-t))}{\sin(\omega(t_b-t_a))}\int_{t_a}^{t_b}\sin(\omega(t_b-t'))f(t')dt'+\frac{1}{m}\int_{t_a}^t \cos(\omega(t-t'))f(t')dt'.
+\end{align}
+Using the formula again, we get 
+\begin{align}
+    \ddot x_p&=-\frac 1 m \frac{\sin(\omega(t_a-t))}{\sin(\omega(t_b-t_a))}\int_{t_a}^{t_b}\sin(\omega(t_b-t'))f(t')dt'-\frac{1}{m}[\int_{t_a}^t\omega \sin(\omega(t-t'))f(t')dt'+\cos(\omega(t-t))f(t)] \\
+    &=-\frac 1 m \frac{\sin(\omega(t_a-t))}{\sin(\omega(t_b-t_a))}\int_{t_a}^{t_b}\sin(\omega(t_b-t'))f(t')dt'-\frac{1}{m}\int_{t_a}^t\omega \sin(\omega(t-t'))f(t')dt'+\frac{f(t)}m \\
+    &=-\omega^2 x_p + \frac{f(t)} m.
+\end{align}
+At $t_a$ we have
+\begin{equation}
+    x(t_a)=A\sin(\omega t_a)+B\cos(\omega t_a).
+\end{equation}
+The factors in $x_p$ are zero at this time because $\sin(\omega(t_a-t))$ will be zero and the bounds of the second integral will match and the integral will vanish. At $t_b$ we have
+\begin{align}
+    x(t_b)&=A\sin(\omega t_b)+B\cos(\omega t_b)+\frac 1 {m\omega} \frac{\sin(\omega(t_a-t_b))}{\sin(\omega(t_b-t_a))}\int_{t_a}^{t_b}\sin(\omega(t_b-t'))f(t')dt'+\frac{1}{m\omega}\int_{t_a}^{t_b} \sin(\omega(t_b-t'))f(t')dt'\\
+    &=A\sin(\omega t_b)+B\cos(\omega t_b)-\frac 1 {m\omega} \int_{t_a}^{t_b}\sin(\omega(t_b-t'))f(t')dt'+\frac{1}{m\omega}\int_{t_a}^{t_b} \sin(\omega(t_b-t'))f(t')dt'\\
+    &=A\sin(\omega t_b)+B\cos(\omega t_b).
+\end{align}
+Since $x(t_a)=x_a$ and $x(t_b)=x_b$, we can solve for $A$ and $B$ in terms of these variables:
+\begin{align}
+    x_a\sin(\omega t_b)&=A\sin(\omega t_a)\sin(\omega t_b)+B\cos(\omega t_a)\sin(\omega t_b)\\
+    x_b\sin(\omega t_a)&=A\sin(\omega t_a)\sin(\omega t_b)+B\sin(\omega t_a)\cos(\omega t_b).
+\end{align}
+Subtracting these equations and factoring out $B$ yields
+\begin{equation}
+    \label{B}
+    B=\frac{x_a\sin(\omega t_b)-x_b\sin(\omega t_a)}{\cos(\omega t_a)\sin(\omega t_b)-\cos(\omega t_b)\sin(\omega t_a)}.
+\end{equation}
+Doing the same for $A$ yields
+\begin{equation}
+    \label{A}
+    A=\frac{x_a\cos(\omega t_b)-x_b\cos(\omega t_a)}{\cos(\omega t_b)\sin(\omega t_a)-\cos(\omega t_a)\sin(\omega t_b)}.
+\end{equation}
+
+\subsection{Exercise}
+ When $f(t)$=0, the action for each segment becomes
+ \begin{equation} 
+    \label{action}
+     S_{n}=\frac{m\omega}{2\sin(\omega T)}[\cos(\omega T)(x_n^2+x_{n-1}^2)-2x_nx_{n-1}],
+ \end{equation}
+ since all the integrals with factors of $f(t)$ will vanish. Then the kernel (propagator) is just
+ \begin{equation}
+     K=C(T)\int...\int dx_1...dx_{N-1}\exp[\frac{i m\omega}{2\hbar\sin(\omega T)}\sum_{n=1}^N[\cos(\omega T)(x_n^2+x_{n-1}^2)-2x_nx_{n-1}]].
+ \end{equation}
+We will redefine $x_a=x_0, x_b=x_N$. Again, let us switch to coordinates 
+\begin{equation}
+    y(t)=x(t)-\bar x(t).
+\end{equation}
+Here the classical path is given by 
+\begin{equation}
+    \bar x = x_c.
+\end{equation}
+The Lagrangian in these coordinates becomes
+\begin{equation}
+    L=(\frac 1 2 m \dot{\bar x}^2-\frac 1 2 m\omega^2 \bar x^2)+(m\dot{\bar x}\dot y -m \omega \bar x y)+(\frac 1 2 m \dot y ^2 -\frac 1 2 m \omega^2y^2).
+\end{equation}
+After integrating, the second term is zero due to integration by parts, the boundary conditions for $y$, and the equation of motion:
+\begin{equation}
+    \int dt( m\dot{\bar x}\dot y -m \omega \bar x y) = m\dot{\bar x} y |_{y(t_0)}^{y(t_N)}-m\int dt y(\ddot{\bar x}+\omega^2 \bar x)=0
+\end{equation}
+The action thus becomes
+\begin{equation}
+    S_{cl}+S_n
+\end{equation}
+where the action for each segment $S_n$ is now in terms of $y$ instead of x:
+\begin{equation}
+    S_{n}=\frac{m\omega}{2\sin(\omega T)}[\cos(\omega T)(y_n^2+y_{n-1}^2)-2y_ny_{n-1}].
+\end{equation}
+Again, in these coordinates, 
+\begin{equation}
+    y_0=y_N=0.
+\end{equation}
+Bringing the factor of $\exp[\frac i \hbar S_{cl}]$ out of the path integral gives
+\begin{align}
+    K=C(T)\exp[\frac{i m \omega}{2\hbar\sin(\omega T)}[(x_N^2+x_0^2)\cos(\omega T)-2x_0x_N]]\\ \times \int...\int dy_1...dy_N\exp[\frac{i m\omega}{2\hbar\sin(\omega T)}\sum_{n=1}^N[\cos(\omega T)(y_n^2+y_{n-1}^2)-2y_ny_{n-1}]].
+\end{align}
+Let us define 
+\begin{equation}
+    F(T)=C(T)\int...\int dy_1...dy_N\exp[\frac{i m\omega}{2\hbar\sin(\omega T)}\sum_{n=1}^N[\cos(\omega T)(y_n^2+y_{n-1}^2)-2y_ny_{n-1}]].
+\end{equation}
+Then our propagator simply becomes
+\begin{equation}
+    K=F(T)\exp[\frac{i m \omega}{2\hbar\sin(\omega T)}[(x_N^2+x_0^2)\cos(\omega T)-2x_0x_N]].
+\end{equation}
+We know that $C(T)$ is a function of only $T$ from exercise 2.4.1, and since all the integrals in $F(T)$ are evaluated over all other variables $y_1...y_{N-1}$ ($y_0=y_N=0$), $F(T)$ is a function of $T$ alone ($m$ and $\omega$ are constants). 
+
+
+\subsection{Exercise}
+\begin{equation}
+    \psi(x,T)=\int dx' K(x,T; x', 0) \psi(x',0)
+\end{equation}
+Inserting 
+\begin{align}
+    \psi(x,0)&=\exp[-\frac{m\omega}{2\hbar}(x-a)^2]\\
+    K(x,T; x', 0)& =F(T)\exp[\frac{i m \omega}{2\hbar\sin(\omega T)}[(x^2+x'^2)\cos(\omega T)-2xx']]
+\end{align}
+gives 
+\begin{equation}
+    \psi(x,T)=F(T)\int dx' \exp[\frac{i m \omega}{2\hbar\sin(\omega T)}[(x^2+x'^2)\cos(\omega T)-2xx']-\frac{m\omega}{2\hbar}(x'-a)^2]
+\end{equation}
+Let us define
+\begin{equation}
+    k=\frac{im\omega}{2 \hbar \sin(\omega T)}, l=\frac{m\omega}{2\hbar}.
+\end{equation}
+Grouping like terms and bringing constants out of the integral gives
+\begin{equation}
+    \psi(x,T)=F(T)e^{kx^2\cos(\omega T)-la^2}\int dx'\exp[(k\cos(\omega T)-l)x'^2+(2la-2kx)x'].
+\end{equation}
+This Gaussian can be done by defining
+\begin{equation}
+    b=2l-2k\cos(\omega T), J=2la-2kx,
+\end{equation}
+which gives
+\begin{equation}
+    F(T)\left (\frac{2\pi}{2l-2k\cos(\omega T)} \right )^{1/2}\exp[kx^2\cos(\omega T)-la^2+\frac{l^2a^2+k^2x^2-2lakx}{l-k\cos(\omega T)}].
+\end{equation}
+Inserting the equations for $l$, $k$, and $F(T)$ reduces the first part of this equation to 
+\begin{equation}
+    F(T)\left (\frac{2\pi}{2l-2k\cos(\omega T)} \right )^{1/2}=\left (\frac{1}{\cos(\omega T)+i\sin(\omega T)}\right )^{1/2}=\exp[\frac{-i\omega T}2]
+\end{equation}
+by Euler's formula. After inserting the factors of $l$ and $k$ into the fraction and recognizing $\cos(\omega T)+i\sin(\omega T)=e^{i\omega T}$, we get that the exponent is 
+\begin{equation}
+    kx^2\cos(\omega T)-la^2+\frac{2\hbar i \sin(\omega T)}{m \omega}e^{-i\omega T}(l^2a^2+k^2x^2-2lakx).
+\end{equation}
+Inserting the equations for $l$ and $k$ and simplifying gives the exponent as (note that when expanding the coefficient of $x^2$, the addition with $\cos(\omega T)+i\sin(\omega T)=e^{i\omega T}$ cancelled precisely):
+\begin{equation}
+    -\frac{m\omega}{2\hbar}[x^2-2axe^{-i\omega T}+a^2\cos(\omega T)e^{-i\omega T}].
+\end{equation}
+Combining with our previous result gives the total wavefunction (up to normalization) as 
+\begin{equation}
+    \psi(x,T)=C\exp \Bigg \{ -\frac{i\omega T}2-\frac{m\omega}{2\hbar}[x^2-2axe^{-i\omega T}+a^2\cos(\omega T)e^{-i\omega T}]\Bigg\}.
+\end{equation}
+The probability distribution is given by
+\begin{align}
+    |\psi|^2=\psi^*\psi&=|C|^2\exp \Bigg \{ -\frac{i\omega T}2-\frac{m\omega}{2\hbar}[x^2-2axe^{-i\omega T}+a^2\cos(\omega T)e^{-i\omega T}]\Bigg\} \\ &\times \exp \Bigg \{ \frac{i\omega T}2-\frac{m\omega}{2\hbar}[x^2-2axe^{i\omega T}+a^2\cos(\omega T)e^{i\omega T}]\Bigg\}\\
+    &= |C|^2\exp \Bigg \{ -\frac{m\omega}{2\hbar}[2x^2-2ax(e^{-i\omega T}+e^{i\omega T})+a^2\cos(\omega T)(e^{-i\omega T}+e^{i\omega T})]\Bigg\}.
+\end{align}
+Using $e^{-i\omega T}+e^{i\omega T}=2\cos(\omega T)$, this becomes
+\begin{equation}
+    |C|^2\exp \Bigg \{ -\frac{m\omega}{2\hbar}[2x^2-4ax\cos(\omega T)+2a^2\cos^2(\omega T)]\Bigg\}.
+\end{equation}
+For this to be a properly normalized probability distribution, we must have
+\begin{equation}
+    \int_{-\infty}^{\infty}dx|\psi(x)|^2=1.
+\end{equation}
+Doing this Gaussian with 
+\begin{equation}
+    b=\frac{2m\omega}\hbar, J=ba\cos(\omega T)
+\end{equation}
+yields 
+\begin{equation}
+    |C|^2\exp[-m\omega a^2\cos^2(\omega T)/\hbar+m\omega a^2\cos^2(\omega T)/\hbar]\left (\frac{\pi\hbar}{m\omega}\right)^{1/2}=|C|^2\left (\frac{\pi\hbar}{m\omega}\right)^{1/2}=1,
+\end{equation}
+or (up to a phase)
+\begin{equation}
+    C=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}.
+\end{equation}
+Inserting this normalization into our expression for the wavefunction yields
+\begin{equation}
+    \psi(x,T)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\exp \Bigg \{ -\frac{i\omega T}2-\frac{m\omega}{2\hbar}[x^2-2axe^{-i\omega T}+a^2\cos(\omega T)e^{-i\omega T}]\Bigg\}.
+\end{equation}
+and the probability distribution becomes
+\begin{equation}
+    |\psi|^2=\left(\frac{m\omega}{\pi\hbar}\right)^{1/2}\exp \Bigg \{ -\frac{m\omega}{2\hbar}[2x^2-4ax\cos(\omega T)+2a^2\cos^2(\omega T)]\Bigg\}.
+\end{equation}
+
+\subsection{Exercise (New 5.4)}
+In this case the action for each segment becomes
+\begin{align} \label{beq6}
+    S_n&=\frac{m\omega}{2\sin(\omega T)}[\cos(\omega T)(x_{n-1}^2+x_n^2)-2x_{n-1}x_n\\&+\frac{2x_{n-1}}{m\omega}\int_{t_{n-1}}^{t_n}\sin(\omega(t_n-t))f(t)dt+\frac{2x_n}{m\omega}\int_{t_{n-1}}^{t_n}\sin(\omega(t-t_{n-1}))f(t)dt \nonumber\\&-\frac 2 {m^2\omega^2}\int_{t_{n-1}}^{t_n}\int_{t_{n-1}}^{t}\sin(\omega(t_n-t'))\sin(\omega(t-t_{n-1}))f(t)f(t')dt'dt].\nonumber
+\end{align}
+As always, we will switch to coordinates 
+\begin{equation}
+    y(t)=x(t)-\bar x(t).
+\end{equation}
+In this case, 
+\begin{equation}
+    \bar x = x_p+x_c.
+\end{equation}
+Furthermore we know the Lagrangian for this system is 
+\begin{equation}
+    L=\frac 1 2 m \dot x^2-\frac 1 2 m\omega^2 x^2+f(t)x.
+\end{equation}
+In the new coordinates, this is simply
+\begin{equation}
+    L=(\frac 1 2 m \dot{\bar x}^2-\frac 1 2 m\omega^2 \bar x^2+f(t)\bar x)+(m\dot{\bar x}\dot y -m \omega \bar x y)+(\frac 1 2 m \dot y ^2 -\frac 1 2 m \omega^2y^2+f(t)y).
+\end{equation}
+Integrating, the second term becomes, 
+\begin{equation}
+    \int dt( m\dot{\bar x}\dot y -m \omega \bar x y) = m\dot{\bar x} y |_{y(t_0)}^{y(t_N)}-m\int dt y(\ddot{\bar x}+\omega^2 \bar x)=-\int dt y f(t)
+\end{equation}
+where the last equality is determined by the equations of motions for $\bar x$. The precisely cancels the last term in the Lagrangian, and the action for $y$ simply becomes that of the unforced harmonic oscillator:
+\begin{equation}
+    S_{cl}+S_n
+\end{equation}
+where $S_n$ defined by \eqref{action} is evaluated over $y$ instead of $x$. Now the propagator for this system is 
+\begin{equation}
+    K=C(T)\int \mathcal D[x(t)]\exp[\frac i \hbar \sum_{n=1}^N S_n]=C(T)\exp[\frac i \hbar S_{cl}]\int \mathcal D[y(t)]\exp[\frac i \hbar (\sum_{n=1}^N S_n)].
+\end{equation}
+If we define 
+\begin{equation}
+    \label{Fdef}
+    F(T)=C(T)\int \mathcal D[y(t)]\exp[\frac i \hbar (\sum_{n=1}^N S_n)],
+\end{equation}
+then, 
+\begin{equation} \label{beq7}
+    K=F(T)\exp[\frac i \hbar S_{cl}].
+\end{equation}
+As before, we know that $C(T)$ is just a function of $T$ and the path integral integrates over all free variables in the action except $T$, thus leaving the final $F(T)$ as a function of $T$ alone. To determine $F(T)$, we remember that 
+\begin{equation}
+    \lim_{T\to 0} K(x_N,t_N;x_0,t_0)=\delta(x_N-x_0).
+\end{equation}
+Integrating over $dx_N$ gives
+\begin{equation}
+    \lim_{T\to 0}F(T)\int dx_N\exp[\frac i \hbar S_{cl}]=1.
+\end{equation}
+Looking at the terms in the classical action, we see that as $T\to 0$, or $t_N\to t_0$, all the integrals become significantly smaller than the other terms. Furthermore, the cosine term approaches 1. Thus we can approximate the action as 
+\begin{equation}
+    S_{cl}\approx \frac{m \omega}{2\sin(\omega T)}[x_N^2+x_0^2-2x_Nx_0]
+\end{equation}
+in the small $T$ limit. Doing the Gaussian integration with 
+\begin{equation}
+    a=-\frac{i m \omega }{\hbar \sin(\omega T)}, J=-\frac{m \omega x_0}{\sin(\omega T)}
+\end{equation}
+gives
+\begin{equation}
+    \left ( \frac{2\pi i \hbar \sin(\omega T)}{m\omega}\right)^{1/2}F(T)=1,
+\end{equation}
+or
+\begin{equation}
+    F(T)=\left( \frac{m\omega}{2\pi i \hbar \sin(\omega T)}\right)^{1/2}.
+\end{equation}
+Inserting this into \eqref{beq7} finally yields the desired propagator for the forced harmonic oscillator:
+\begin{equation} \label{beq8}
+    K=\left( \frac{m\omega}{2\pi i \hbar \sin(\omega T)}\right)^{1/2}\exp[\frac i \hbar S_{cl}].
+\end{equation}
+\subsection{Exercise (Old 5.4)}
+If $f(t)=f$, the integrals in the action become
+\begin{align}
+    f\int_{t_0}^{t_N}\sin(\omega(t_N-t))dt&=f\frac{1-\cos(\omega T)}\omega\\
+    f\int_{t_0}^{t_N}\sin(\omega(t-t_0))dt&=f\frac{1-\cos(\omega T)}\omega\\
+    f^2\int_{t_0}^{t_N}\int_{t_0}^{t}\sin(\omega(t_N-t))\sin(\omega(t'-t_0))dt'dt&=f^2(-\frac{\omega T \sin(\omega T)+2\cos(\omega T)-2}{2\omega ^2})
+\end{align}
+Then 
+\begin{equation}
+    S_{cl}=\frac{m\omega}{2\sin(\omega T)}[\cos(\omega T)(x_N^2+x_0^2)-2x_Nx_0+\frac{2f-2f\cos(\omega T)}{m\omega^2}[x_0+x_N]+\frac{2f^2}{m^2\omega^2}\frac{\omega T \sin(\omega T)+2\cos(\omega T)-2}{2\omega ^2}].
+\end{equation}
+By \eqref{beq8}, the propagator is 
+\begin{align}
+    K=\left( \frac{m\omega}{2\pi i \hbar \sin(\omega T)}\right)^{1/2}
+    \exp[ \frac{i m\omega}{2\hbar \sin(\omega T)}
+    \left\{A + B\right\}]
+\end{align}
+where 
+\begin{align}
+    A &= \cos(\omega T)(x_N^2+x_0^2)-2x_Nx_0+\frac{2f-2f\cos(\omega T)}{m\omega^2}[x_0+x_N] \\
+    B &= \frac{2f^2}{m^2\omega^2}\frac{\omega T \sin(\omega T)+2\cos(\omega T)-2}{2\omega ^2}
+\end{align}
+
+
+

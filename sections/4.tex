@@ -1,0 +1,62 @@
+\section{Schrödinger's Equation from Path Integrals}
+\subsection{Exercise}
+\begin{equation}
+    S=\int_{t_0}^{t}\frac 1 2 m v^2 -V(x)dt'
+\end{equation}
+Using the short-time constant-velocity approximation, this becomes
+\begin{equation}
+    S=\delta t*[\frac 1 2 m \frac {\delta x^2}{\delta t^2}-V(x_0+\frac {\delta x} 2)]=\frac{m\delta x^2}{2\delta t}-\delta tV(x_0+\frac{\delta x}2),
+\end{equation}
+where $x_0$ is the initial position, $\delta x= x-x_0$ is the change in position, and $\delta t=t-t_0$ is the change in time. Due to the short time scale, the potential is evaluated at the mid-point of the interval, given by $x_0+\delta x/2$.
+With this, the propagator is simply 
+\begin{equation}
+    U(x_0+\delta x,t_0+\delta t;x_0,t_0)=C(t)\exp[\frac{im\delta x^2}{2\hbar \delta t}-\frac{iV(x_0+\frac {\delta x} 2)}\hbar\delta t].
+\end{equation}
+\subsection{Exercise}
+The first order expansion for $V(x_0+\frac{\delta x}2)$ is 
+\begin{equation}
+    V(x_0+\frac{\delta x}2)\approx V(x_0)+\frac{\delta x}2 \frac{dV}{dx}.
+\end{equation}
+The propagator can be split into kinetic and potential parts:
+\begin{align}
+      U(x_0+\delta x,t_0+\delta t;x_0,t_0)\\&=C(t)\exp[\frac{im\delta x^2}{2\hbar \delta t}-\frac{iV(x_0+\frac {\delta x} 2)}\hbar\delta t]
+      \\&=C(t)\exp[\frac{im\delta x^2}{2\hbar \delta t}]\exp[-\frac{iV(x_0+\frac {\delta x} 2)}\hbar\delta t].
+\end{align}
+In this expression, we will replace $V(x_0+\frac{\delta x}2)$ with $V(x_0)$, as the second term in the first order expansion of $V(x_0+\frac{\delta x}2)$ will be second order in infinitesimals when multiplied with the factor of $\delta t$ in the exponential in the propagator. Expanding the potential part, we get
+\begin{equation}
+     U(x_0+\delta x,t_0+\delta t;x_0,t_0)=C(t)[1-\frac{iV(x_0)}\hbar\delta t]\exp[\frac{im\delta x^2}{2\hbar \delta t}].
+\end{equation}
+In view of the integrals cancelling the normalization factor and the results of exercises 2.6.1 and 2.6.2, we will avoid expanding $\exp[\frac{im\delta x^2}{2\hbar \delta t}]$.
+\subsection{Exercise}
+From exercise 2.6.2, we know we can change variables to $\eta=\delta x$, and that if $\eta$ is small, we can treat the integral as though only the exponential contributes. Using this approximation and inserting our expansions for the propagator and the wavefunctions, we get that
+\begin{equation}
+    \psi(x,t)=C(t)[1-\frac{iV(x_0)}\hbar\delta t]\int d\eta [\psi(x_0,t_0)+\frac 1 2 \eta^2\frac{\partial^2\psi(x_0,t_0)}{\partial x^2}]\exp[\frac{im\eta^2}{2\hbar \delta t}].
+\end{equation}
+Evaluating the Gaussian integrals gives
+\begin{equation}\label{beq5}
+    \psi(x,t)=C(t)[1-\frac{iV(x_0)}\hbar\delta t]\Bigg\{\psi(x_0,t_0)\left(\frac{2\pi i\hbar\delta t}{m}\right)^{1/2}+\frac 1 2 \sqrt{2\pi} \left( \frac{i\hbar \delta t}{m}\right )^{3/2}\frac{\partial^2\psi(x_0,t_0)}{\partial x^2}\Bigg\}
+\end{equation}
+where the formula 
+\begin{equation}
+    \int d\xi \xi^2 \exp[\frac{im\xi^2}{2\hbar \delta t}]=\sqrt{2\pi}\left(\frac{i\hbar\delta t}m\right)^{3/2}
+\end{equation}
+was used, which can be derived by differentiating \eqref{beq4} with respect to $a$. To figure out the normalization factor $C(t)$, we take the small $\delta t$ limit, in which case the terms with factors of higher powers of $\delta t$ ($3/2$ vs. $1/2$) are significantly smaller than the other terms. In this case,
+\begin{equation} 
+    \psi(x_0,t_0)=C(t)\psi(x_0,t_0)\left(\frac{2\pi i\hbar\delta t}{m}\right)^{1/2}.
+\end{equation}
+Note that $\psi(x,t)$ was replaced by $\psi(x_0,t_0)$, as when the time interval decreases, the time evolving wavefunction approaches the initial state. With this equality, it is clear that 
+\begin{equation}
+    C(t)=\left(\frac{m}{2\pi i \hbar \delta t}\right)^{1/2}.
+\end{equation}
+Inserting this equation into \eqref{beq5}, expanding, and removing terms second order in $\delta t$ finally yields
+\begin{equation}
+    \psi(x,t)=\psi(x_0,t_0)-\frac i \hbar V(x_0)\psi(x_0,t)\delta t+\frac{i\hbar \delta t}{2m}\frac{\partial^2\psi(x_0,t_0)}{\partial x^2}.
+\end{equation}
+This can be rearranged to 
+\begin{equation}
+    \frac{\psi(x,t)-\psi(x_0,t_0)}{\delta t}=-\frac i \hbar V(x_0)\psi(x_0,t)+\frac{i\hbar }{2m}\frac{\partial^2\psi(x_0,t_0)}{\partial x^2}.
+\end{equation}
+Taking the limit $\delta t\to 0$ and multiplying by $i\hbar$, we finally recover the Schrödinger equation:
+\begin{equation}
+    i\hbar \frac{\partial \psi(x,t_0)}{\partial t}=\left(V(x_0)-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\right)\psi(x_0,t_0).
+\end{equation}

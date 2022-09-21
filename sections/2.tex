@@ -1,0 +1,89 @@
+\section{Path-integral in Quantum Mechanics}
+\subsection{Exercise}
+We know that the action is given as
+\begin{equation}
+    S = \int_{t_a}^{t_b}L(x, \dot x, t) \dd t = \lim_{\Delta t\to 0}\sum L \Delta t
+\end{equation}
+The lagrangian has units of energy as it is given as the difference of kinetic and potential energies. Therefore, the action has units of Energy $\times$ time. Planck used $\hbar$ when describing the blackbody spectrum. The energy of a photon given by this is
+\begin{equation}
+    E = \hbar \omega \implies \hbar = \frac{E}{\omega}.
+\end{equation}
+Frequency has units of 1/time. Therefore, Planck's constant has units of Energy $\times$ time as well. 
+\subsection{Exercise}
+Let us suppose that the alpha particle is a free particle. From a quick internet search, we found that the typical range of alpha particles in the air is about 4 centimeters, they travel at about $v = 0.05c$, and have a mass of 4 amu ($6.64\times 10^{-27}\;\mathrm{kg}$). We will say that the speed is not fast enough to use special relativity (usually we do this when the speeds are about $0.1c$). So, as derived in exercise 1.4, the action is, when assuming (and neglecting units) $t_a = x_a = 0$: 
+\begin{equation}
+    S = \frac{1}{2}m\frac{x_b^2}{t_b}.
+\end{equation}
+The total time taken follows kinematics, where 
+\begin{equation}
+    v = \dv{x}{t}\implies t_b = \frac{x_b}{0.05c}. 
+\end{equation}
+Hence, 
+\begin{equation}
+    \frac{1}{2}mv x_b = \frac{1}{2}(6.64\times 10^{-27}) (0.05 \times 3\times 10^8)(0.04) = 1.99\times 10^{-21}\;\mathrm{J\cdot s}.
+\end{equation}
+Using Planck's constant $\hbar = 6.62 \times 10^{-34}\;\mathrm{J\cdot s}$, the ratio $S/\hbar = 3\times 10^{12}$ which is massive. As $S \gg \hbar$, we can safely say that the alpha particle is within the classical limit. 
+
+
+\subsection{Exercise}
+The fact that normalization is independent of path implies that the transition amplitude is somehow also independent of the path the particle "actually" takes. Thus, in some sense, the particle is taking all the paths simultaneously. In order for this to be a proper probability, it must have magnitude 1 when considering the amplitude between all points, and so a path independent factor must be multiplied dependent only on the endpoints, which is the normalization constant. 
+
+\subsection{Exercise}
+We must have $A$ be related to $\epsilon$ because it is path independent. As all other variables are integrated over, it can only depend on the time at the endpoints meaning that it can only be a function of the time interval. Furthermore, it must be a function of $\epsilon$ and not some other combination like $t_2^2-t_1^2$ since the interval must be invariant under a time shift $t\to t+c$, as otherwise, calculating an amplitude with the same setup at a later time will yield a different value. 
+
+
+\subsection{Exercise}
+We know that the phase factor is given as $e^{i S/\hbar}$ which means the phase is $\phi = S/\hbar$ since the phase factor is in the form $e^{i\phi}$. The phase difference is then 
+\begin{equation}
+    \Delta \phi = \frac{S_2 - S_1}{\hbar}.
+\end{equation}
+On path 1, the action is given as $S_1 = \frac{1}{2}mv_1^2 t$ where $v_1 = D/t$. On path 2, the action is given as $S_2 = \frac{1}{2}mv_2^2 t$ where $v_2 = (D + d)/t$. As $d \ll D$, $v = v_1 \approx v_2$ as said in the problem. This then means that, in general, $S = \frac{ms^2}{t}$ where $s$ is an arbitrary distance that is not specified. Keeping only terms in order $d/D$, we find that 
+\begin{equation}
+    S_2 - S_1 = \frac{m}{2t} ((D + d)^2 - D^2) \approx \frac{mDd}{t} \approx mvd.
+\end{equation}
+Therefore, using $\lambda = h/p$ and $\hbar = h/2\pi$, we can write the phase difference as 
+\begin{equation}
+    \Delta \phi = \frac{S_2 - S_1}{\hbar} \approx \frac{2\pi pd}{h} \approx \frac{2\pi d}{\lambda}. 
+\end{equation}
+\subsection{Exercise I}
+From equation 28 in the packet, we know that 
+\begin{equation}
+    \psi (x_b, t_a+\epsilon) = \int_{-\infty}^{\infty}U(x_b, t_a+\epsilon; x_a, t_a) \psi(x_a, t_a) \dd x_a
+\end{equation}
+We can write the propagator as below. For a small time interval $\epsilon$, we can skip the inner integral. 
+\begin{equation}\label{p}
+    U(x_b, t_a+\epsilon; x_a, t_a) = \frac{1}{A} \exp \left(L \left(\frac{x_b - x_a}{\epsilon}, \frac{x_a + x_b}{2}, t + \frac{\epsilon}{2} \right)\right)\epsilon
+\end{equation}
+The lagrangian can be written as the sum of kinetic and potential energy components. Thus, 
+\begin{align}
+    L \left(\frac{x_b - x_a}{\epsilon}, \frac{x_a + x_b}{2}, t_a + \frac{\epsilon}{2} \right) &= \frac{1}{2}m\frac{(x_b - x_a)^2}{\epsilon^2} - V\left(x_b + \frac{\eta}{2}, t_a + \frac{\epsilon}{2}\right) \\
+    &= \frac{m \eta^2}{2\epsilon^2} - V\left(x_b + \frac{\eta}{2}, t_a + \frac{\epsilon}{2}\right)
+\end{align} 
+Now, substituting this propagator into \eqref{p} yields 
+\begin{align}
+    \psi (x_b, t+\epsilon) &= \frac{1}{A} \int_{-\infty}^{\infty}\exp \left\{\frac{i\epsilon}{\hbar}\left[\frac{m \eta^2}{2\epsilon^2} - V\left(x_b + \frac{\eta}{2}, t_a + \frac{\epsilon}{2}\right)\right]\right\}\psi (x_b + \eta, t_a) \dd \eta  \\
+    &= \frac{1}{A}\int_{-\infty}^{\infty}\exp\left\{\frac{im\eta^2}{2\hbar \epsilon}\right\}\exp\left\{-\frac{i}{\hbar}\epsilon V \left(x_b + \frac{\eta}{2}, t_a + \frac{\epsilon}{2}\right)\right\}\psi (x_b + \eta, t_a) \dd \eta 
+\end{align}
+
+\subsection{Exercise II}
+The first integral on the righthand side is just 
+\begin{equation}
+    \int_{-\infty}^{\infty}\exp\left\{\frac{im\eta^2}{2\hbar\epsilon}\right\}\dd \eta = \sqrt{\frac{2\pi i \hbar \epsilon}{m}}.
+\end{equation}
+Note that this is since, 
+\begin{equation}
+    \int_{-\infty}^{\infty}e^{-x^2}\dd x = \sqrt{\pi},
+\end{equation}
+then we know the integral 
+\begin{equation}
+    \int_{-\infty}^{\infty}e^{-ax^2}\dd x = \sqrt{\frac{\pi}{a}}
+\end{equation}
+by $u-$substitution. Looking at our equation now, we have 
+\begin{equation}
+    \psi (x_b, t_a) + \dots = \frac{1}{A}[1 - \frac{i}{\hbar} \epsilon V(x_b, t_a)]\left(\psi (x_b, t_a) \sqrt{\frac{2\pi i \hbar \epsilon}{m}} + \dots \right)
+\end{equation}
+Comparing both sides, we see 
+\begin{equation}
+\psi (x_b, t_a) = \psi (x_b, t_a) \frac{1}{A}\sqrt{\frac{2\pi i \hbar \epsilon}{m}}\implies A = \sqrt{\frac{2\pi i \hbar \epsilon}{m}}.
+\end{equation}
+\newpage 

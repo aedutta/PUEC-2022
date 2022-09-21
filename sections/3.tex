@@ -1,0 +1,148 @@
+\section{Free Particle Propagator}
+\subsection{Exercise}
+For a free particle (zero potential),
+\begin{equation}
+    S_i=\int_{t_{i-1}}^{t_i} \dd t L= \int_{t_{i-1}}^{t_i} \dd t \frac 1 2 mv^2.
+\end{equation}
+Assuming constant velocity between the segments, we have
+\begin{align}
+    S_i &=\int_{t_{i-1}}^{t_i} \dd t \frac 1 2 m \frac{(x_i-x_{i-1})^2}{\Delta t^2} \\
+&=\Delta t\frac 1 2 m \frac{(x_i-x_{i-1})^2}{\Delta t^2} \\
+&= \frac{m}{2\Delta t}(x_i-x_{i-1})^2,
+\end{align}
+where 
+\begin{equation}
+    \Delta t=t_{i}-t_{i-1}=(t_N-t_0)/N.
+\end{equation}
+\subsection{Exercise}
+All the following integrals will be evaluated over $(-\infty,\infty)$, but for the sake of notation, the bounds will be omitted. 
+\begin{equation}
+    U(x_N,t_N;x_0,t_0)=C(t)\int ...\int dx_1...dx_{N-1} \exp[\frac i \hbar S]
+\end{equation}
+Using our expression for the free particle action for each segment, we get
+\begin{align}
+    C(t)\int ...\int dx_1...dx_{N-1} \exp[\frac i \hbar S]\\&=C(t)\int ...\int dx_1...dx_{N-1} \exp[\frac i \hbar \sum_{i=1}^NS_i]\\ &\label{eq3}=C(t)\int ...\int dx_1...dx_{N-1} \exp[\frac{im}{2\hbar\Delta t}\sum_{i=1}^N(x_i-x_{i-1})^2].
+\end{align}
+We will now switch variables from the original position variable $x_i$ to a position variable which determines position relative to the classical path $\bar x$:
+\begin{equation}
+    y(t)=x(t)-\bar x(t).
+\end{equation} 
+The classical path for a free particle is given by
+\begin{equation}
+    \bar x(t)=x_0+\frac{x_N-x_0}{t_N-t_0}(t-t_0).
+\end{equation}
+Since the classical and quantum paths coincide at $t_0$ and $t_N$, we have 
+\begin{equation}
+\label{eq1}
+    y(t_0)=y(t_N)=0.
+\end{equation}
+In these coordinates, 
+\begin{align}
+    \dot x=\dot{\bar x}+\dot y &\\
+    \dot{\bar x}=\frac{x_N-x_0}{t_N-t_0},
+\end{align}
+and so
+\begin{equation}
+    S=\int_{t_0}^{t_N}\dd t\frac 1 2 m\dot x^2=\int_{t_0}^{t_N}\dd t\frac 1 2 m(\dot{\bar x}^2+2\dot{\bar x}\dot y+\dot y^2).
+\end{equation}
+The first term of this integral is 
+\begin{equation}
+    \frac 1 2 m \frac{(x_N-x_0)^2}{t_N-t_0}.
+\end{equation}
+The second term evaluates to zero due to integration by parts, \eqref{eq1}, and the Euler-Lagrange equations
+\begin{equation}
+    \ddot{\bar x}=0.
+\end{equation}
+The last term is equivalent to the action for the free particle in the original coordinates with boundary conditions given by \eqref{eq1}. Furthermore it is given in the packet that 
+\begin{equation}
+    \int \mathcal{D}[x(t)]=\int \mathcal{D}[y(t)]
+\end{equation}
+for these coordinates, and so the total path integral in these coordinates is given by
+\begin{align}
+     C(t)\int ...\int dx_1...dx_{N-1} \exp[\frac i \hbar S]\\&
+     =C(t)\exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}]\int...\int dy_1...dy_{N-1}\exp[\frac i \hbar \int \frac 1 2 m \dot{y}^2].
+\end{align}
+By using our expression \eqref{eq3} for the action in the path integral with the variable y, we get 
+\begin{align}
+    &C(t)\exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}]\int...\int dy_1...dy_{N-1}\exp[\frac i \hbar \int \frac 1 2 m \dot{y}^2]&\\
+    &=C(t)\exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}]\int...\int dy_1...dy_{N-1} \exp[\frac{im}{2\hbar\Delta t}\sum_{i=1}^N(y_i-y_{i-1})^2]&\\
+    \label{eq2}&=C(t)\exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}]\int...\int dy_1...dy_{N-1} \exp[\frac{im}{2\hbar\Delta t}(2y_1^2+2y_2^2...+2y_{N-1}^2-2y_1y_2-2y_2y_3...-2y_{N-2}y_{N-1})].
+\end{align}
+To simplify notation, let us define
+\begin{equation}
+    k=\frac{im}{2\hbar\Delta t}.
+\end{equation}
+Using the formula (derived from the Gaussian integral by completing the square and doing a u-substitution)
+\begin{equation} \label{beq4}
+    \int \exp[-\frac 1 2 a x^2+Jx]dx=\left ( \frac{2\pi}{a}\right )^{1/2}e^{J^2/2a},
+\end{equation}
+we can evaluate all the integrals. \\
+Isolating just the terms with $y_1$, the integral over $y_1$ becomes
+\begin{equation}
+    \int dy_1\exp[2ky_1^2-2ky_1y_2].
+\end{equation}
+Letting 
+\begin{equation}
+    a_1=-4k, J_1=-2ky_2,
+\end{equation}
+we get that this integral is 
+\begin{equation}
+    \left (- \frac {\pi}{2k} \right)^{1/2}e^{-ky_2^2/2}.
+\end{equation}
+The integral over $y_2$ then becomes
+\begin{equation}
+    \int dy_2\exp[\frac 3 2 ky_2^2-2ky_2y_3].
+\end{equation}
+Again, letting 
+\begin{equation}
+    a_2=-3k, J_2=-2ky_3,
+\end{equation}
+we get that this integral is 
+\begin{equation}
+    \left(-\frac{2\pi}{3k}\right)^{1/2}e^{-2ky_3^2/3}.
+\end{equation}
+From these expressions, we may guess that
+\begin{equation}
+    a_n=-2k\left(\frac{n+1}{n}\right), J_n=-2ky_{n+1}
+\end{equation}
+for $1\le n\le N-1$. The equation for $J_n$ holds because the only factors added to the exponents are of form $J_{n-1}^2/2a_{n-1}$ which are quadratic in $y_n$ and thus cannot impact the linear terms already present in \eqref{eq2}. We can verify the equation for $a_n$ with induction. This formula obviously holds for n=1. Noting that 
+\begin{equation}
+    -\frac 1 2 a_{n+1}=2k+\frac{J_{n}^2}{2a_{n}y_{n+1}^2}\to a_{n+1}=-4k-\frac{4k^2}{-2k\left(\frac{n+1}{n}\right)}=-2k\left(\frac{n+2}{n+1}\right).
+\end{equation}
+The first equation was acquired by remembering that $-a_{n+1}/2$ was the coefficient of $y_{n+1}^2$ in the Gaussian integral and by noting that the original coefficients for all $y_n$ was 2k. We then simply add the factor of $\frac{J_{n}^2}{2a_{n}y_{n+1}^2}$, which arises from the calculation of the Gaussian integral for $y_{n}$. Since we only care about the coefficient of $y_{n+1}^2$, we divide this factor out in the equation. \\
+Since in these coordinates $y_N=0$, we get that $J_{N-1}$=0. Before this point, the factors of $\exp[J^2/2a]$ only contribute to the calculation of $a$ and thus do not impact the value of the integration. Thus, the total value of all the integrals over $y_1...y_{N-1}$ will just be
+\begin{equation}
+    \int...\int dy_1...dy_{N-1}\exp[\frac{im}{2\hbar\Delta t}\sum_{i=1}^N(y_i-y_{i-1})^2]=\prod_{n=1}^{N-1}\left ( \frac{2\pi}{a_n}\right )^{1/2}.
+\end{equation}
+Inserting the formula for $a_n$ and pulling out the constant factor, we get 
+\begin{equation}
+    \prod_{n=1}^{N-1}\left ( \frac{2\pi}{a_n}\right )^{1/2}=\left(\left(-\frac\pi k\right)^{N-1}\prod_{n=1}^{N-1}\frac n {n+1}\right )^{1/2}.
+\end{equation}
+The product is simply
+\begin{equation}
+    \prod_{n=1}^{N-1}\frac n {n+1}=\frac 1 2 \cdot  \frac 2 3 \cdot \frac 3 4... \frac {N-1} N= \frac 1 N.
+\end{equation}
+Putting everything together and inserting the value of $k$, we get
+\begin{equation}
+    U(x_N,t_N;x_0,t_0)=C(t)\left(\frac{2\pi i \hbar \Delta t} m \right )^{\frac{N-1} 2}\sqrt{\frac 1 N} \exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}].
+\end{equation}
+In order to find the normalization factor $C(t)$, we note that
+\begin{equation}
+    \lim_{\Delta t\to 0} U(x_N,t_N;x_0,t_0)=\delta(x_N-x_0),
+\end{equation}
+as the particle must approach the initial position as the time interval shortens. Integrating this over $x_N$, we get
+\begin{equation}
+    \lim_{\Delta t \to 0} C(t)\left(\frac{2\pi i \hbar \Delta t} m \right )^{\frac{N} 2} =1.
+\end{equation}
+The extra factor of $\sqrt{2\pi i \hbar (t_N-t_0)/m}=\sqrt{2\pi i \hbar N\Delta t/m}$ comes from the Gaussian integral over the exponential in the propagator. Furthermore, the exponential due to $\frac{imx_0^2}{2\hbar N\Delta t}$ gets precisely cancelled due to the factor $J^2/2a=-\frac{imx_0^2}{2\hbar N\Delta t}$ which comes from the Gaussian. To have this properly normalized, we must have
+\begin{equation}
+    C(t)=\left( \frac m {2\pi\hbar i \Delta t }\right ) ^{N/2}.
+\end{equation}
+We thus get 
+\begin{equation}
+    U(x_N,t_N;x_0,t_0)=\left( \frac m {2\pi\hbar i N\Delta t}\right ) ^{1/2}\exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}],
+\end{equation}
+where the factors of $C(t)$ have cancelled out the factors from the integration. Noting that $N\Delta t=t_N-t_0$ (the total time interval), we get the final expression for the free particle propagator:
+\begin{equation}
+    U(x_N,t_N;x_0,t_0)=\left( \frac m {2\pi\hbar i (t_N-t_0)}\right ) ^{1/2}\exp[\frac{im}{2\hbar}\frac{(x_N-x_0)^2}{t_N-t_0}].
+\end{equation}

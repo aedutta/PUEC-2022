@@ -1,0 +1,65 @@
+  \documentclass{article}
+\usepackage{multicol} %multiple columns
+\usepackage{amsmath,amsthm,amssymb,amsfonts} 
+\usepackage[margin=0.5in]{geometry} %0.5 in margins
+\usepackage{gensymb} %degree symbol \degree
+\usepackage{empheq} %box multiple equations
+\usepackage{float} %placing image HERE
+\usepackage{tikz}
+\usepackage{physics}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\title{PUEC 2022}
+\author{Team \textbf{AceD}\\
+Matthew Chen, Ashmit Dutta, Bhanu Narra, Peter Xu}
+\date{\today}
+
+\newcommand{\ode}[2]{\ensuremath{\frac{\mathrm{d}#1}{\mathrm{d}#2}}}
+\newcommand{\pde}[2]{\ensuremath{%
+		\frac{\partial #1}{\partial #2}}}
+%usage: \pde{y}{x} will output dy/dx
+
+\newcommand{\oden}[3]{\ensuremath{\frac{\mathrm{d}^{#1}#2}{\mathrm{d}{#3}^{#1}}}}
+\newcommand{\pden}[3]{\ensuremath{\frac{\partial^{#1}#2}{\partial{#3}^{#1}}}}
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+
+%\numberwithin{equation}{chapter} %equation numbering: (chapter).(#eq in that chapter)
+%\setcounter{tocdepth}{0} %only display parts and chapters in the table of contents, 
+
+\newenvironment{amatrix}[1]{%
+	\left(\begin{array}{@{}*{#1}{c}|c@{}}
+	}{%
+	\end{array}\right)
+}
+%\begin{amatrix}{2} 	1 & 2 & 3 \\  a & b & c		\end{amatrix} 
+% will output a 3x2 matrix with a vertical line between the 2nd and 3rd column 
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage 
+We referred to several different books in this citation, namely \cite{Ryder1996Quantum}\cite{sakurai2006advanced}\cite{schwartz2014quantum}\cite{zee2010quantum}.
+\include{sections/1}
+\include{sections/2}
+\include{sections/3}
+\include{sections/4}
+\include{sections/5}
+\include{sections/6}
+\include{sections/7}
+\include{sections/8}
+\include{sections/9}
+\bibliographystyle{plain}
+\bibliography{bib.bib}
+\end{document}

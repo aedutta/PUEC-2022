@@ -1,0 +1,57 @@
+\section{Path Integral Calculation of Partition Function}
+\subsection{Exercise}
+We connect back to equation 46 in the packet where we know that 
+\begin{equation}\label{p}
+    U(x_1, t; x_0, t_0) = \langle x_1 |e^{-i \hat{H} (t - t_0)/\hbar} | x_0 \rangle = \int_{x(t_0) = x}^{x(t) = x_1} \mathcal{D}x \exp\left[\frac{i}{\hbar}\int_{t_0}^{t}\dd t \mathcal L\right].
+\end{equation}
+Taking $t-t_0 = -i\beta\hbar$ and $x=x_1=x_0$ gives 
+\begin{equation}
+    U(x, -i\beta\hbar; x, 0) = \langle x |e^{-\beta \hat{H}}| x \rangle 
+\end{equation}
+We also know that $\sum_n |n\rangle \langle n| = 1$, meaning 
+\begin{align}
+    U(x, -i\beta \hbar; x, 0) &= \langle x |e^{-\beta \hat{H}}|\sum_j |j\rangle \langle j| x \rangle \\
+    &= \sum_j e^{-\beta H}\langle x| j \rangle \langle j|x \rangle \\
+    &= \sum_j e^{-\beta H}\langle j|x \rangle \langle x|j \rangle
+\end{align}
+Integrating over x gives us
+\begin{equation}
+    \int \dd x U (x, -i\beta \hbar; x, 0) = \sum_j e^{-\beta H} \langle j| \int \dd x |x \rangle \langle x|j \rangle = \sum_j \langle j| e^{-\beta H}|j \rangle = Z.
+\end{equation}
+since $\int \dd x |x \rangle \langle x| = I$.
+\subsection{Exercise}
+From our propagator from exercise 5.4, we know that a quantum harmonic oscillator has a propagator of 
+\begin{equation}
+    K=F(T)\exp[\frac{i m \omega}{2\hbar\sin(\omega T)}[(x_N^2+x_0^2)\cos(\omega T)-2x_0x_N]].
+\end{equation}
+Substituting $t\to -i\beta \hbar$, we get 
+\begin{align}
+    Z &= \int \dd x U (x, -i\beta \hbar; x, 0) \\
+      &= \int \dd x \left(\frac{m\omega}{2\pi i \hbar \sin (i\beta\hbar \omega)}\right)^{1/2}\exp \left\{\frac{-m\omega}{\hbar i\sin (-i\beta\hbar \omega)}[x^2 \cos (-i\beta \hbar \omega) -x^2]\right\} \\
+      &= \left(\frac{m\omega}{2\pi i \hbar \sin (i\beta\hbar \omega)}\right)^{1/2}\int \dd x \exp\left\{\frac{-m\omega x^2}{\hbar \sinh (\beta \hbar \omega)}[\cosh (\beta \hbar \omega) - 1]\right\} \\
+      &= \left(\frac{m\omega}{2\pi i \hbar \sin (i\beta\hbar \omega)}\right)^{1/2}\left(\frac{\pi}{\frac{m\omega}{\hbar \sinh (\beta \hbar \omega)}[\cosh (\beta \hbar \omega) - 1]}\right) \\
+      &= \frac{1}{2(\cosh (\beta \hbar \omega) - 1)^{1/2}} \\
+      &= \frac{e^{-\beta \hbar \omega/2}}{1 - e^{-\beta \hbar \omega}}.
+\end{align}
+\subsection{Exercise}
+From section 4.3, we know that 
+\begin{equation}
+    U (x_1, t; x_0, t_0) = \int_{x(t_0) = x_0}^{x(t) = x_1} \mathcal D x \exp \left[\frac{i}{\hbar}\int_{t_0}^{t}\dd t \mathcal L\right]
+\end{equation}
+Furthermore, we know from section 1, that the classical action is defined as 
+\begin{equation}
+    S = \int_{t_a}^{t_b} L (x, \dot x, t) \dd t.
+\end{equation}
+So by substituting the equation into our previous equation, it is easy to show our propagator now becomes 
+\begin{equation}
+    U (x_1, -i\tau; x_0) = \int \mathcal D x \exp \left[-\frac{1}{\hbar}S_E [x(\tau)]\right]
+\end{equation}
+The action in this case can be shown under differentiation rules:
+\begin{equation}
+    t = -i \tau \implies \dv{x}{t} = \dv{x}{\tau}\dv{\tau}{t} = - i \dv{x}{\tau}.
+\end{equation}
+Hence, the Euclidean action goes as 
+\begin{equation}
+    \int \dd t \left( \frac{m}{2}\dot x(t) - V(x(t))\right) \to -i\int \dd t \left(\frac{m}{2}\dot x(\tau) + V(x (\tau))\right)
+\end{equation}
+

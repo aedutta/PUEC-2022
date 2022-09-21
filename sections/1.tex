@@ -1,0 +1,62 @@
+\section{The Classical Action}
+\subsection{Exercise 1: First step}
+The function $f$ changes in both $x_1$ as well as in $x_2$, so when we write the change in the function $\delta f$, we have to consider each individual change of the function in terms of $x_1$ and $x_2$. To do this, we multiply the gradient of the function $\partial f/\partial x_i$ times $x_i$ to get the change and we do this for each $x_1$ and $x_2$. Therefore, 
+\begin{equation}\label{1}
+\delta f = \delta x_1 \pdv{f}{x_1} + \delta x_2\pdv{f}{x_2}.
+\end{equation}
+\subsection{Exercise 2: Second Step}
+We consider the change in action. By applying equation \eqref{1}
+\begin{align}
+\delta S &= \delta\left(\int_{t_a}^{t_b}L(x, \dot x, t) \dd t\right) \\
+&= \int_{t_a}^{t_b}\delta L \dd t \\
+&= \int_{t_a}^{t_b}\left(\delta x \pdv{L}{x} + \delta \dot{x}\pdv{L}{\dot x}\right)\dd t.
+\end{align}
+We can apply integration by parts to the second term. Using the below formula
+\begin{equation}
+    \int u\dd v = uv - \int v \dd u,
+\end{equation}
+we say that $u = \pdv{L}{\dot x}$ and $v = \dot x$. Hence, 
+\begin{equation}
+    \delta S = \left.\delta x\pdv{L}{\dot x}\right|_{t_a}^{t_b} + \int_{t_a}^{t_b}\delta x\left(\pdv{L}{x} - \dv{}{t}\left(\pdv{L}{\dot x}\right)\right)\dd t.
+\end{equation}
+Note that the first term vanishes as $\delta x(t_a) = \delta x (t_b) = 0$. We want action to minimized, so $\delta S = 0$ which means 
+\begin{equation}\label{EL}
+    \pdv{L}{x} - \dv{}{t}\left(\pdv{L}{\dot x}\right) = 0.
+\end{equation}
+\subsection{Exercise}
+The lagrangian is $L$ = Kinetic energy - Potential energy. Assuming a point of reference where the potential energy is $U(x)$, we can say the lagrangian consists of only kinetic energy, or 
+\begin{equation}\label{2}
+    L = \frac{1}{2}m\dot x^2 - U(x)
+\end{equation}
+From equation \eqref{2} and equation \eqref{EL}, we have
+\begin{equation}\pdv{}{x}\left[\frac{1}{2}m\dot x^2 - U(x)\right] - \dv{}{t}\left(\pdv{}{\dot x} \left[\frac{1}{2}m\dot x^2 - U(x)\right]\right) = 0.\end{equation}
+The first term becomes $\partial U/\partial x$ because kinetic energy is only dependant on $\dot x$ and potential energy is dependant on $x$. Similarly, the second term becomes $m \ddot x$ for the same reasons. Hence, we finally yield
+\begin{equation}
+    -\pdv{U(x)}{x} = m \ddot x
+\end{equation}
+As the negative gradient of potential energy is force and $\ddot x = a$, we yield 
+\begin{equation}
+    F = ma.
+\end{equation}
+\subsection{Exercise}
+If there is no external force, then we say that the potential energy is 0 as the negative gradient results in force. So, we consider the action of only the kinetic energy component. 
+\begin{equation}
+    S = \int_{t_a}^{t_b}\frac{1}{2}m\dot x^2 \dd t = \frac{1}{2}m\frac{(x_b - x_a)^2}{t_b - t_a}.
+\end{equation}
+\subsection{Exercise}
+We consider the change of the hamiltonian with respect to time. If it is equal to zero, then the Hamiltonian does not change and the potential energy does not change on velocity or time explicitly. 
+\begin{equation}
+    \dv{H}{t} = \ddot{x}\pdv{L}{\dot x} + \dot x \dv{}{t}\left(\pdv{L}{\dot x}\right) - \dv{L}{t}.
+\end{equation}
+We know that the change in lagrangian with respect to time is zero, so the third term vanishes. By equation \eqref{EL}, the first two terms vanish since:
+\begin{equation}
+    \pdv{L}{x} - \dv{}{t}\left(\pdv{L}{\dot x}\right) = 0 \to \dot x \pdv{L}{x} - \dot x \dv{}{t}\left(\pdv{L}{\dot x}\right) \to \ddot x \pdv{L}{\dot x} - \dot x \dv{}{t}\left(\pdv{L}{\dot x}\right) = 0
+\end{equation}Hence, 
+\begin{equation}
+    \dv{H}{t} = 0
+\end{equation}
+and our statement is proven. If the potential energy does not depend on $\dot x$, then $\partial L/\partial \dot x$ is only dependent on kinetic energy $T$. As $T = \frac{1}{2}m \dot x^2$, then $\dot x (\partial L/\partial \dot x) = \dot x (m \dot x) = m \dot x^2$. Hence, the Hamiltonian can be rewritten as 
+\begin{equation}
+    H = m \dot x^2 - \frac{1}{2}m \dot x^2 + V(x) = \frac{p^2}{2m} + V(x).
+\end{equation}
+\newpage 
